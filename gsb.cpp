@@ -1,5 +1,6 @@
 #include <iostream>
 #include <map>
+#include <vector>
 
 enum class Currency {
     ENC,
@@ -26,6 +27,8 @@ class BankAccountInfo {
 
 class Bank {
     protected:
+        size_t id;
+        size_t nextAccountId;
         std::string myName;
         BankAccountInfo checkingAccountInfo;
         BankAccountInfo savingAccountInfo;
@@ -38,7 +41,7 @@ class BankBuilder : public Bank {
     private:
         BankAccountInfo *settingAccount;
     public:
-        BankBuilder() { settingAccount = &checkingAccountInfo; }
+        BankBuilder(size_t id) { settingAccount = &checkingAccountInfo; this->id = id; }
 
         BankBuilder& name(std::string n) {
             setName(n);
@@ -81,10 +84,18 @@ class BankBuilder : public Bank {
 };
 
 class gkb {
+    private:
+        size_t nextId;
+        static std::vector<Bank*> banks;
     public:
-        BankBuilder bankApplication() {
-            return BankBuilder();
+        BankBuilder& bankApplication() { //refernecja moze psuc
+            return BankBuilder(nextId++);
         }
+
+        void registerBank(Bank* bank) {
+
+        }
+
 };
 
 
