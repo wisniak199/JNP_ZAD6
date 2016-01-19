@@ -87,6 +87,38 @@ class gkb {
         }
 };
 
+
+class Citizen {
+    protected:
+        std::string name;
+        int id;
+    public:
+        Citizen(std::string& name, int id) : name(name), id(id) {}
+        std::string& getName() { return name; }
+};
+
+class StandardPlanet {
+    protected:
+        int nextId;
+        std::map<int, Citizen> idToName;
+
+    public:
+        virtual Citizen& findCitizen(int id) {
+            return (*(idToName.find(id))).second;
+        }
+
+        virtual Citizen registerCitizen(std::string& name) {
+            Citizen c = Citizen(name, nextId);
+            idToName.emplace(nextId, std::move(c));
+            nextId++;
+            return findCitizen(nextId - 1);
+        }
+};
+
+class Earth : StandardPlanet {};
+class Qonos : StandardPlanet {};
+
+
 int main() {
     auto& enterpriseBank = gkb().bankApplication()
         .name("Enterprise Bank")
