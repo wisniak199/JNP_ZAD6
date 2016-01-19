@@ -1,0 +1,66 @@
+GSB
+---
+
+ZFP
+---
+
+Planeta
+---
+
+Ziemia : Planeta
+---
+
+Konos : Planeta
+---
+
+Bajnaus : Planeta
+---
+
+Rasa
+---
+
+Ludzie: Rasa
+---
+
+Klingowie : Rasa
+---
+
+Binarowie : Rasa
+---
+- imie1
+- imie2
+
+Osoba:
+---
+- rasa
+- id_planetarne
+
+Bank
+---
+- miesieczne oplaty za prowadzenie konta (zalezna od typu konta)
+- oplata za przelew (zalezna od typu konta)
+- miesieczny odsetek od srodkow na koncie (zalezna od typu konta)
+
+Konto
+---
+
+Rozliczeniowe : Konto
+---
+
+Oszczednosciowe : Konto
+---
+
+Walutowe : Konto
+---
+
+Waluta
+---
+
+BIC, DIL, LIT : Waluta
+---
+
+Kalendarz:
+- dzien
+- miesiac
+- godzina
+
