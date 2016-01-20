@@ -2,13 +2,45 @@
 #include <map>
 #include <vector>
 
-enum class Currency {
-    ENC,
-    BIC,
-    DIL,
-    LIT,
-};
+class Bank;
+class BankBuilder;
+class BankAccountInfo;
 
+using AccountID = size_t;
+
+class Depositanle {
+
+}
+
+class Withdrawable {
+    void withdraw(std::pair<double, Currency> data)
+    void withdraw(int money);
+}
+
+
+class Account {
+    private:
+        friend class Bank;
+        AccountInfo &info;
+        Citizen &owner;
+        Bank &bank;
+        int money; //to do
+
+    public:
+    void transfer(const double money, const AccountID id, const std::string& title) {
+
+    }
+}
+
+class CheckingAccount : Account {
+
+}
+
+class CurrencyAccount : Account {
+
+}
+
+class
 class BankAccountInfo {
     private:
         double monthlyCharge;
@@ -27,6 +59,8 @@ class BankAccountInfo {
 
 class Bank {
     protected:
+        friend class BankBuilder;
+        friend class BankSystem;
         size_t id;
         size_t nextAccountId;
         std::string myName;
@@ -35,35 +69,57 @@ class Bank {
         BankAccountInfo currencyAccountInfo;
     public:
         void setName(std::string n) {myName = n;}
+
+        Account
 };
 
-class BankBuilder : public Bank {
+class BankSystem {
+    protected:
+        friend class BankBuilder;
+        static size_t nextId;
+        static std::map<size_t, Bank> banks;
+        static Bank& addBank(Bank& bank) {
+            auto addedBank = banks.emplace(nextId, bank);
+            addedBank.first->second.id = nextId++;
+            return addedBank.first->second;
+        }
+};
+
+enum class Currency {
+    ENC,
+    BIC,
+    DIL,
+    LIT,
+};
+
+class BankBuilder {
     private:
+        static Bank bankTemplate;
         BankAccountInfo *settingAccount;
     public:
-        BankBuilder(size_t id) { settingAccount = &checkingAccountInfo; this->id = id; }
+        BankBuilder() { settingAccount = &bankTemplate.checkingAccountInfo; }
 
-        BankBuilder& name(std::string n) {
-            setName(n);
+        BankBuilder& name(const std::string& n) {
+            bankTemplate.myName = n;
             return *this;
         }
 
         Bank& createBank() {
-            return *this;
+            return BankSystem::addBank(bankTemplate);
         }
 
         BankBuilder& checkingAccount() {
-            settingAccount = &checkingAccountInfo;
+            settingAccount = &bankTemplate.checkingAccountInfo;
             return *this;
         }
 
         BankBuilder& savingAccount() {
-            settingAccount = &savingAccountInfo;
+            settingAccount = &bankTemplate.savingAccountInfo;
             return *this;
         }
 
         BankBuilder& currencyAccount() {
-            settingAccount = &currencyAccountInfo;
+            settingAccount = &bankTemplate.currencyAccountInfo;
             return *this;
         }
 
@@ -83,18 +139,19 @@ class BankBuilder : public Bank {
         }
 };
 
+
 class gkb {
-    private:
+    /*private:
         size_t nextId;
         static std::vector<Bank*> banks;
     public:
         BankBuilder& bankApplication() { //refernecja moze psuc
-            return BankBuilder(nextId++);
+            return BankBuilder();
         }
 
         void registerBank(Bank* bank) {
 
-        }
+        }*/
 
 };
 
@@ -131,10 +188,10 @@ class Qonos : StandardPlanet {};
 
 
 int main() {
-    auto& enterpriseBank = gkb().bankApplication()
+    /*auto& enterpriseBank = gkb().bankApplication()
         .name("Enterprise Bank")
         .savingAccount().monthlyCharge(2.00).transferCharge(1.00).interestRate(5)
         .currencyAccount().transferCharge(2.00).interestRate(1.5)
-        .createBank();
+        .createBank();*/
     return 0;
 }
