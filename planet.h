@@ -1,6 +1,8 @@
 #ifndef __PLANET_H__
 #define __PLANET_H__
 
+#include <memory>
+
 namespace {
     CitizenID getNextID() {
         static CitizenID id = 0;

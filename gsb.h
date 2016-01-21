@@ -24,17 +24,17 @@
     LIT,
 };*/
 
-Earth earth() {
+Earth& earth() {
     static Earth earth;
     return earth;
 }
 
-Qonos qonos() {
+Qonos& qonos() {
     static Qonos qonos;
     return qonos;
 }
 
-Bynaus bynaus() {
+Bynaus& bynaus() {
     static Bynaus bynaus;
     return bynaus;
 }
