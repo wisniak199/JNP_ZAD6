@@ -1,64 +1,129 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include "gsb.h"
 
-class Citizen;
+/*class Citizen;
 class Bank;
 class BankBuilder;
 class BankAccountInfo;
 
-using AccountID = size_t;
+using AccountID = size_t;*/
 
-enum class Currency {
-    ENC,
-    BIC,
-    DIL,
-    LIT,
-};
+
+//class BussinessError : std::exception {};
 
 
 /******************************************************************************
  * Account
  */
 
-class AccountInfo {};
-class Depositanle {
-
+/*class AccountInfo {};
+class Depositable {
+    virtual void deposit(std::pair<double, Currency> data);
+    virtual void deposit(double money);
 };
 
 class Withdrawable {
-    void withdraw(std::pair<double, Currency> data);
-    void withdraw(int money);
-};
+    virtual void withdraw(std::pair<double, Currency> data);
+    virtual void withdraw(double money);
+};*/
 
 
-class Account {
-    private:
+
+/*class Account {
+    protected:
         friend class Bank;
         AccountInfo &info;
         Citizen &owner;
         Bank &bank;
-        int money; //to do
+        double money; //to do
+        std::vector<HistoryEntry> history;
 
     public:
+    Account(AccountInfo& info, Citizen& owner, Bank& bank) : info(info), owner(owner), bank(bank) {}
     void transfer(const double money, const AccountID id, const std::string& title) {
 
     }
 };
 
 class CheckingAccount : Account {
-
+    public:
+        CheckingAccount(AccountInfo& info, Citizen& owner, Bank& bank) : Account(info, owner, bank) {}
+    void transfer(const double money, const AccountID id, const std::string& title) {
+        //opkaowujemy parametry i wywolujemy funkcje z bank managera
+    }
 };
 
-class CurrencyAccount : Account {
+class CurrencyAccount : Account, Withdrawable, Depositable {
+    Currency currency;
+    public:
+        CurrencyAccount(AccountInfo& info, Citizen& owner, Bank& bank) : Account(info, owner, bank) {}
 
+        virtual void deposit(std::pair<double, Currency> data) {
+            if (data.second != Currency::ENC && data.second != currency)
+                throw BussinessError();
+
+            if (data.second == Currency::ENC)
+                money += data.first / bank.getExchangeTable().getExchange(currency);
+            else
+                money += data.first;
+            //to do - dodac do historii
+        }
+
+        virtual void deposit(double money) {
+            deposit({money, currency});
+        }
+
+        virtual void withdraw(std::pair<double, Currency> data) {
+            if (data.second != Currency::ENC && data.second != currency)
+                throw BussinessError();
+
+            if (data.second == Currency::ENC)
+                money -= data.first / bank.getExchangeTable().getExchange(currency);
+            else
+                money -= data.first;
+            //to do - dodac do historii
+        }
+
+        virtual void withdraw(double money) {
+            deposit({money, currency});
+        }
 };
 
+class SavingAccount : Account, Withdrawable, Depositable {
+    public:
+        SavingAccount(AccountInfo& info, Citizen& owner, Bank& bank) : Account(info, owner, bank) {}
 
+        virtual void deposit(std::pair<double, Currency> data) {
+            if (data.second != Currency::ENC)
+                throw BussinessError();
+
+            money += data.first;
+            //to do - dodac do historii
+        }
+
+        virtual void deposit(double money) {
+            deposit({money, Currency::ENC});
+        }
+
+        virtual void withdraw(std::pair<double, Currency>& data) {
+            if (data.first > money || data.second != Currency::ENC)
+                throw BussinessError();
+
+            money -= data.first;
+            //to do - dodac do historii
+        }
+        virtual void withdraw(double money) {
+            withdraw({money, Currency::ENC});
+        }
+
+
+};*/
 /******************************************************************************
  * Bank
  */
-class BankAccountInfo {
+/*class BankAccountInfo {
     private:
         double monthlyCharge;
         double transferCharge;
@@ -72,9 +137,9 @@ class BankAccountInfo {
         double getTransferCharge() {return transferCharge;}
         void setInterestRate(double rate) {interestRate = rate;}
         double getInterestRate() {return interestRate;}
-};
+};*/
 
-class Bank {
+/*class Bank {
     protected:
         friend class BankBuilder;
         friend class BankSystem;
@@ -89,9 +154,9 @@ class Bank {
 
         // @TODO
         // Account
-};
+};*/
 
-class BankSystem {
+/*class BankSystem {
     protected:
         friend class BankBuilder;
         static size_t nextId;
@@ -101,9 +166,9 @@ class BankSystem {
             addedBank.first->second.id = nextId++;
             return addedBank.first->second;
         }
-};
+};*/
 
-class BankBuilder {
+/*class BankBuilder {
     private:
         static Bank bankTemplate;
         BankAccountInfo *settingAccount;
@@ -148,7 +213,7 @@ class BankBuilder {
             settingAccount->setInterestRate(rate);
             return *this;
         }
-};
+};*/
 
 
 /******************************************************************************
@@ -173,19 +238,19 @@ class gkb {
 /******************************************************************************
  * Citizen
  */
-class Citizen {
+/*class Citizen {
     protected:
         std::string name;
         int id;
     public:
         Citizen(std::string& name, int id) : name(name), id(id) {}
         std::string& getName() { return name; }
-};
+};*/
 
 /******************************************************************************
  * Planet
  */
-class StandardPlanet {
+/*class StandardPlanet {
     protected:
         int nextId;
         std::map<int, Citizen> idToName;
@@ -201,30 +266,22 @@ class StandardPlanet {
             nextId++;
             return findCitizen(nextId - 1);
         }
-};
+};*/
 
 /**
  * @TODO Byloby super, gdyby Ziemia rejestrowala EarthCitizen.
  */
-class Earth : StandardPlanet {
+/*class Earth : StandardPlanet {
 };
 class Qonos : StandardPlanet {};
 
-
+*/
 
 /******************************************************************************
  * globalne
  */
 
-Earth earth() {
-    static Earth earth;
-    return earth;
-}
 
-Qonos qonos() {
-    static Qonos qonos;
-    return qonos;
-}
 
 int main() {
     // rejestracja obywateli na poszczególnych planetach
