@@ -10,13 +10,13 @@
 
 using AccountID = size_t;
 class Depositable {
-    virtual void deposit(std::pair<double, Currency> data);
-    virtual void deposit(double money);
+    virtual void deposit(std::pair<double, Currency> data) = 0;
+    virtual void deposit(double money) = 0;
 };
 
 class Withdrawable {
-    virtual void withdraw(std::pair<double, Currency> data);
-    virtual void withdraw(double money);
+    virtual void withdraw(std::pair<double, Currency> data) = 0;
+    virtual void withdraw(double money) = 0;
 };
 
 class Account {
@@ -30,13 +30,14 @@ class Account {
 
     public:
     Account(BankAccountInfo& info, Citizen& owner, Bank& bank) : info(info), owner(owner), bank(bank) {}
-    virtual void transfer(const double money, const AccountID id, const std::string& title);
+    //pure virtual
+    virtual void transfer(const double money, const AccountID id, const std::string& title) = 0;
 };
 
 class CheckingAccount : Account {
     public:
         CheckingAccount(BankAccountInfo& info, Citizen& owner, Bank& bank) : Account(info, owner, bank) {}
-    virtual void transfer(const double money, const AccountID id, const std::string& title);
+    //virtual void transfer(const double money, const AccountID id, const std::string& title) override;
 };
 
 class CurrencyAccount : Account, Withdrawable, Depositable {
@@ -44,25 +45,25 @@ class CurrencyAccount : Account, Withdrawable, Depositable {
     public:
         CurrencyAccount(BankAccountInfo& info, Citizen& owner, Bank& bank) : Account(info, owner, bank) {}
 
-        virtual void deposit(std::pair<double, Currency> data);
+        virtual void deposit(std::pair<double, Currency> data) override;
 
-        virtual void deposit(double money);
+        virtual void deposit(double money) override;
 
-        virtual void withdraw(std::pair<double, Currency> data);
+        virtual void withdraw(std::pair<double, Currency> data) override;
 
-        virtual void withdraw(double money);
+        virtual void withdraw(double money) override;
 };
 
 class SavingAccount : Account, Withdrawable, Depositable {
     public:
         SavingAccount(BankAccountInfo& info, Citizen& owner, Bank& bank) : Account(info, owner, bank) {}
 
-        virtual void deposit(std::pair<double, Currency> data);
+        virtual void deposit(std::pair<double, Currency> data) override;
 
-        virtual void deposit(double money);
+        virtual void deposit(double money) override;
 
-        virtual void withdraw(std::pair<double, Currency> data);
-        virtual void withdraw(double money);
+        virtual void withdraw(std::pair<double, Currency> data) override;
+        virtual void withdraw(double money) override;
 };
 
 #endif /*__ACCOUNT_H__*/

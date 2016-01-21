@@ -1,6 +1,8 @@
 #ifndef __CITIZEN_H__
 #define __CITIZEN_H__
 
+#include <iostream>
+
 using CitizenID = size_t;
 
 class Citizen {

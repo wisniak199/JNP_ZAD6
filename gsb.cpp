@@ -11,8 +11,8 @@ int main() {
     assert(b0.id() == 2);
     auto& b1 = bynaus().registerCitizen("11111111");
     assert(b1.id() == 3);
-    // auto& binarius = bynaus().registerCitizen(b0, b1);
-    // assert(binarius.getName() == b0.getName() + "&" + b1.getName());
+    auto& binarius = bynaus().registerCitizen(b0, b1);
+    assert(binarius.getName() == b0.getName() + "&" + b1.getName());
     assert(b0.id() == 2);
     assert(b1.id() == 3);
 
