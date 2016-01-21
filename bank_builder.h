@@ -1,5 +1,5 @@
 #ifndef __BANK_BUILDER_H__
-#def __BANK_BUILDER_H__
+#define __BANK_BUILDER_H__
 
 class BankBuilder {
     private:

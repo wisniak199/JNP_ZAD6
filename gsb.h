@@ -1,9 +1,19 @@
 #ifndef __GSB_H__
-#def __GSB_H__
+#define __GSB_H__
 
 #include <iostream>
 #include <map>
 #include <vector>
+
+#include "bank.h"
+#include "bank_system.h"
+#include "bank_builder.h"
+#include "bank_account_info.h"
+#include "currency.h"
+#include "exchange_table.h"
+#include "account.h"
+#include "planet.h"
+#include "citizen.h"
 
 /*enum class Currency {
     ENC,
@@ -22,9 +32,14 @@ Qonos qonos() {
     return qonos;
 }
 
-class HistoryEntry {
-    virtual std::string& toString();
-};
+Bynaus bynaus() {
+    static Bynaus bynaus;
+    return bynaus;
+}
+
+// class HistoryEntry {
+    // virtual std::string& toString();
+// };
 
 /*class ExchangeTable {
     private:
