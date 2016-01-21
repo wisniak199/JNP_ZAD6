@@ -5,6 +5,8 @@
 #include <map>
 #include <vector>
 
+#define DEBUG 1
+
 #include "bank.h"
 #include "bank_system.h"
 #include "bank_builder.h"

@@ -1,5 +1,4 @@
 // @TODO ustalic, czy przechowujemy id jako size_t, czy int.
-#define DEBUG 1
 #include <iostream>
 #include <cassert>
 #include "gsb.h"
@@ -9,19 +8,23 @@ int main() {
     auto& captain = earth().registerCitizen("Jean-Luc Picard");
     auto& officer = qonos().registerCitizen("Worf");
     auto& b0 = bynaus().registerCitizen("00000000");
+    assert(b0.id() == 2);
     auto& b1 = bynaus().registerCitizen("11111111");
-    auto& binarius = bynaus().registerCitizen(b0, b1);
-    assert(binarius.getName() == b0.getName() + "&" + b1.getName());
+    assert(b1.id() == 3);
+    // auto& binarius = bynaus().registerCitizen(b0, b1);
+    // assert(binarius.getName() == b0.getName() + "&" + b1.getName());
+    assert(b0.id() == 2);
+    assert(b1.id() == 3);
 
     // // możemy odszukać obywatela, o ile znamy jego identyfikator...
     auto& found = earth().findCitizen(captain.id());
     assert(found.id() == captain.id());
-    try {
-        auto& spock = earth().findCitizen(123456789);
-    } catch (...) {
-        // ...jeśli nie istnieje, to zgłaszany jest wyjątek
-        ::std::cout << "Spock not found" << ::std::endl;
-    }
+    // try {
+        // auto& spock = earth().findCitizen(123456789);
+    // } catch (...) {
+        // // ...jeśli nie istnieje, to zgłaszany jest wyjątek
+        // ::std::cout << "Spock not found" << ::std::endl;
+    // }
 
     // // nowe banki otwieramy poprzez wniosek do Gwiezdnej Komisji Bankowej
     // // hint: wzorzec Builder oraz fluent interface
