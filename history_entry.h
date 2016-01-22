@@ -9,7 +9,9 @@
 enum class OperationType {
     TRANSFER = 1,
     CHARGE,
-    INTEREST
+    INTEREST,
+    DEPOSIT,
+    WITHDRAWAL
 };
 
 class HistoryEntry {
@@ -39,6 +41,12 @@ class HistoryEntry {
                     break;
                 case OperationType::INTEREST:
                     ot = "INTEREST";
+                    break;
+                case OperationType::WITHDRAWAL:
+                    ot = "WITHDRAWAL";
+                    break;
+                case OperationType::DEPOSIT:
+                    ot = "DEPOSIT";
                     break;
             }
             return ot;
