@@ -19,12 +19,12 @@ int main() {
     // // możemy odszukać obywatela, o ile znamy jego identyfikator...
     auto& found = earth().findCitizen(captain.id());
     assert(found.id() == captain.id());
-    // try {
-        // auto& spock = earth().findCitizen(123456789);
-    // } catch (...) {
-        // // ...jeśli nie istnieje, to zgłaszany jest wyjątek
-        // ::std::cout << "Spock not found" << ::std::endl;
-    // }
+    try {
+        auto& spock = earth().findCitizen(123456789);
+    } catch (...) {
+        // ...jeśli nie istnieje, to zgłaszany jest wyjątek
+        ::std::cout << "Spock not found" << ::std::endl;
+    }
 
     // // nowe banki otwieramy poprzez wniosek do Gwiezdnej Komisji Bankowej
     // // hint: wzorzec Builder oraz fluent interface
@@ -36,12 +36,12 @@ int main() {
            .currencyAccount().transferCharge(2.00).interestRate(1.5)
            .createBank();
     // // domyślnie brak opłat oraz 0 oprocentowanie
-    // auto& raisaBank = gkb().bankApplication()
-        // .name("Raisa Bank")
-        // .createBank();
+    auto& raisaBank = gkb().bankApplication()
+        .name("Raisa Bank")
+        .createBank();
 
     // // możemy otwierać różne rodzaje kont dla obywateli Zjednoczonej Federacji Planet
-    // auto& picardsChecking = enterpriseBank.openCheckingAccount(captain);
+    auto& picardsChecking = enterpriseBank.openCheckingAccount(captain);
     // auto& picardsSaving = enterpriseBank.openSavingAccount(captain);
     // auto& binariusCurrency = raisaBank.openCurrencyAccount(binarius, Currency::DIL);
 

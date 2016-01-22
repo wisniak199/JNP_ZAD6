@@ -6,9 +6,11 @@
 #include "bank.h"
 #include "bank_account_info.h"
 #include "citizen.h"
-#include "history_entry.h"
 
 using AccountID = size_t;
+#include "history_entry.h"
+
+
 class Depositable {
     virtual void deposit(std::pair<double, Currency> data) = 0;
     virtual void deposit(double money) = 0;
