@@ -6,10 +6,12 @@
 #include "exchange_table.h"
 
 class Bank {
+    public:
+        using BankID = size_t;
     protected:
         friend class BankBuilder;
         friend class BankSystem;
-        size_t id;
+        BankID id;
         size_t nextAccountId;
         std::string myName;
         BankAccountInfo checkingAccountInfo;
