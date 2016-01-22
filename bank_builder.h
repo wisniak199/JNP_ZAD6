@@ -6,7 +6,8 @@
 
 class BankBuilder {
     private:
-        static Bank bankTemplate;
+        Bank::BankID nextID;
+        Bank bankTemplate;
         BankAccountInfo *settingAccount;
     public:
         BankBuilder() { settingAccount = &bankTemplate.checkingAccountInfo; }
@@ -17,7 +18,8 @@ class BankBuilder {
         }
 
         Bank& createBank() {
-            return BankSystem::addBank(bankTemplate);
+            bankTemplate.id = nextID++;
+            return bankSystem().addBank(bankTemplate);
         }
 
         BankBuilder& checkingAccount() {
@@ -50,5 +52,7 @@ class BankBuilder {
             return *this;
         }
 };
+
+BankBuilder& bankBuilder();
 
 #endif /*__BANK_BUILDER_H__*/

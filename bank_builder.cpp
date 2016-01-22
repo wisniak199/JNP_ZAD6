@@ -1,4 +1,7 @@
 #include "bank_builder.h"
 #include "bank.h"
 
-Bank BankBuilder::bankTemplate;
+BankBuilder& bankBuilder() {
+    static BankBuilder builder;
+    return builder;
+}
