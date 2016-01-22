@@ -8,7 +8,7 @@ void CurrencyAccount::deposit(std::pair<double, Currency> data) {
         throw BusinessError();
 
     if (data.second == Currency::ENC)
-        money += data.first / bank.getExchangeTable().getExchange(currency);
+        money += data.first;// / bank.getExchangeTable().getExchange(currency);
     else
         money += data.first;
     //to do - dodac do historii
@@ -23,7 +23,7 @@ void CurrencyAccount::withdraw(std::pair<double, Currency> data) {
         throw BusinessError();
 
     if (data.second == Currency::ENC)
-        money -= data.first / bank.getExchangeTable().getExchange(currency);
+        money -= data.first;// / bank.getExchangeTable().getExchange(currency);
     else
         money -= data.first;
     //to do - dodac do historii
@@ -59,3 +59,5 @@ void SavingAccount::withdraw(std::pair<double, Currency> data) {
 void SavingAccount::withdraw(double money) {
     withdraw({money, Currency::ENC});
 }
+
+//virtual void transfer(const double money, const AccountID id, const std::string& title) override;

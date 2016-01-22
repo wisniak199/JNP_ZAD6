@@ -1,11 +1,12 @@
 #ifndef __HISOTRY_ENTRY_H__
 #define __HISOTRY_ENTRY_H__
 
-#include "account.h"
+#include "currency.h"
 /**
  * Reprezentowana w klasach kont, jako wektor.
  */
 
+using AccountID = std::pair<size_t, size_t>;
 enum class OperationType {
     TRANSFER = 1,
     CHARGE,
@@ -79,12 +80,10 @@ class HistoryEntryTransfer : public HistoryEntry {
 
         virtual std::string toString() {
             return HistoryEntry::toString() + " (" + _title + ")"
-                    + " FROM: " + std::to_string(_sender)
-                    + " TO: " + std::to_string(_receiver);
+                    + " FROM: "// + std::to_string(_sender)
+                    + " TO: ";// + std::to_string(_receiver);
         }
 };
-
-
 
 
 #endif /*__HISOTRY_ENTRY_H__*/
