@@ -1,6 +1,9 @@
 #ifndef __BANK_BUILDER_H__
 #define __BANK_BUILDER_H__
 
+#include "bank.h"
+#include "bank_system.h"
+
 class BankBuilder {
     private:
         static Bank bankTemplate;

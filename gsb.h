@@ -16,6 +16,7 @@
 #include "account.h"
 #include "planet.h"
 #include "citizen.h"
+#include "gkb.h"
 
 Earth& earth() {
     static Earth earth;
@@ -32,14 +33,6 @@ Bynaus& bynaus() {
     return bynaus;
 }
 
-class gkb {
-    private:
-        size_t nextId;
-        static std::vector<Bank*> banks;
-    public:
-        BankBuilder& bankApplication();
-        void registerBank(Bank* bank);
-};
 
 
 #endif /*__GSB_H__*/

@@ -29,12 +29,12 @@ int main() {
     // // nowe banki otwieramy poprzez wniosek do Gwiezdnej Komisji Bankowej
     // // hint: wzorzec Builder oraz fluent interface
     // // opłaty zawsze w ENC
-    // auto& enterpriseBank = gkb().bankApplication()
-        // .name("Enterprise Bank")
-        // .checkingAccount()
-        // .savingAccount().monthlyCharge(2.00).transferCharge(1.00).interestRate(5)
-        // .currencyAccount().transferCharge(2.00).interestRate(1.5)
-        // .createBank();
+     auto& enterpriseBank = gkb().bankApplication()
+           .name("Enterprise Bank")
+           .checkingAccount()
+           .savingAccount().monthlyCharge(2.00).transferCharge(1.00).interestRate(5)
+           .currencyAccount().transferCharge(2.00).interestRate(1.5)
+           .createBank();
     // // domyślnie brak opłat oraz 0 oprocentowanie
     // auto& raisaBank = gkb().bankApplication()
         // .name("Raisa Bank")
