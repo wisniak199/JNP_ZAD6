@@ -60,4 +60,9 @@ void Bank::transferFrom(TransferInfo& info) {
     }
 }
 
-void Bank::monhtlyChargeOfAccounts(){}
+void Bank::monthlyChargeOfAccounts(){
+   for (auto account_pair : accounts) {
+       auto account = account_pair.second;
+       account->money -= account->info.getMonthlyCharge();
+   }
+}

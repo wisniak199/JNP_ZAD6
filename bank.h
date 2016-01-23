@@ -24,7 +24,7 @@ class Bank {
         ExchangeTable exchangeTable;
         std::map<size_t, std::shared_ptr<Account>> accounts;
         void registerAccountID(Account& account);
-        void monhtlyChargeOfAccounts();
+        void monthlyChargeOfAccounts();
 
     public:
         void setName(std::string n) {myName = n;}
@@ -35,7 +35,6 @@ class Bank {
         void registerAccountID(std::shared_ptr<Account> account);
         void transferTo(TransferInfo& info);
         void transferFrom(TransferInfo& info);
-        void monhtlyChargeOfAccounts();
         // @TODO
         // Account
 };
