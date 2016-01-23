@@ -10,7 +10,7 @@
 #include "currency.h"
 #include "not_found_error.h"
 
-class Bank; //@@FIXME
+class Bank;
 
 // Interfejs do wpłacania pieniądze.
 class Depositable {
@@ -33,7 +33,7 @@ class Account {
         using AccountID = std::pair<size_t, size_t>;
 
     protected:
-        // @FIXME Napisać o zależnościach.
+        // Bank jest przyjacielem bo może edytować stan konta
         friend class Bank;
         AccountID _id;
         // Informacje o ofercie banku dla danego typu konta.
