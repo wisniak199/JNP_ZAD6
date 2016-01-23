@@ -2,6 +2,7 @@
 #define __HISOTRY_ENTRY_H__
 
 #include "currency.h"
+#include "interstellarclock.h"
 /**
  * Reprezentowana w klasach kont, jako wektor.
  */
@@ -17,15 +18,15 @@ enum class OperationType {
 
 class HistoryEntry {
     protected:
-        size_t _day;
+        Date _day;
         double _money;
         Currency _currency;
         OperationType _operationType;
 
     public:
-        HistoryEntry(size_t day, double money, Currency currency,
+        HistoryEntry(double money, Currency currency,
                     OperationType operationType)
-            : _day(day)
+            : _day(interstellarClock().date())
             , _money(money)
             , _currency(currency)
             , _operationType(operationType)
@@ -68,11 +69,11 @@ class HistoryEntryTransfer : public HistoryEntry {
         AccountID _receiver;
 
     public:
-        HistoryEntryTransfer(size_t day, double money, Currency currency,
+        HistoryEntryTransfer(double money, Currency currency,
                              OperationType operationType,
                              std::string title,
                              AccountID sender, AccountID receiver)
-            : HistoryEntry(day, money, currency, operationType)
+            : HistoryEntry(money, currency, operationType)
             , _title(title)
             , _sender(sender)
             , _receiver(receiver)

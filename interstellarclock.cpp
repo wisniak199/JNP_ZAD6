@@ -28,3 +28,8 @@ InterstellarClock& InterstellarClock::nextMonth() {
         nextDay();
     return *this;
 }
+
+InterstellarClock& interstellarClock() {
+    static InterstellarClock clock;
+    return clock;
+}

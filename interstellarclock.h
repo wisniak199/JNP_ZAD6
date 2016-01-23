@@ -39,5 +39,6 @@ private:
     unsigned long long _hours;
 };
 
+InterstellarClock& interstellarClock();
 
 #endif /* defined(__gsb__interstellar_clock__) */
