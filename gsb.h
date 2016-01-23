@@ -7,12 +7,8 @@
 
 #define DEBUG 1
 
-//#include "bank.h"
-//#include "bank_system.h"
 #include "bank_builder.h"
-//#include "bank_account_info.h"
 #include "currency.h"
-//#include "exchange_table.h"
 #include "account.h"
 #include "planet.h"
 #include "citizen.h"
@@ -32,7 +28,5 @@ Bynaus& bynaus() {
     static Bynaus bynaus;
     return bynaus;
 }
-
-
 
 #endif /*__GSB_H__*/
