@@ -1,5 +1,6 @@
 #include "account.h"
 #include "business_error.h"
+#include "bank.h"
 
 //CurrencyAccount
 
@@ -7,11 +8,13 @@ void CurrencyAccount::deposit(std::pair<double, Currency> data) {
     if (data.second != Currency::ENC && data.second != currency)
         throw BusinessError();
 
+    double toAdd;
     if (data.second == Currency::ENC)
-        money += data.first;// / bank.getExchangeTable().getExchange(currency);
+        toAdd = data.first / bank.getExchangeTable().getSellRate(currency);
     else
-        money += data.first;
-    //to do - dodac do historii
+        toAdd = data.first;
+    money += toAdd;
+    history.push_back(HistoryEntry(toAdd, data.second, OperationType::DEPOSIT));
 }
 
 void CurrencyAccount::deposit(double money) {
@@ -22,11 +25,15 @@ void CurrencyAccount::withdraw(std::pair<double, Currency> data) {
     if (data.second != Currency::ENC && data.second != currency)
         throw BusinessError();
 
+    double toSubtract;
     if (data.second == Currency::ENC)
-        money -= data.first;// / bank.getExchangeTable().getExchange(currency);
+        toSubtract = data.first / bank.getExchangeTable().getBuyRate(currency);
     else
-        money -= data.first;
-    //to do - dodac do historii
+        toSubtract = data.first;
+    if (toSubtract > money)
+        throw BusinessError();
+    money -= toSubtract;
+    history.push_back(HistoryEntry(toSubtract, data.second, OperationType::WITHDRAWAL));
 }
 
 void CurrencyAccount::withdraw(double money) {
@@ -34,29 +41,29 @@ void CurrencyAccount::withdraw(double money) {
 }
 
 
-//SavingAccount
+// CHecking
 
-void SavingAccount::deposit(std::pair<double, Currency> data) {
+void CheckingAccount::deposit(std::pair<double, Currency> data) {
     if (data.second != Currency::ENC)
         throw BusinessError();
 
     money += data.first;
-    //to do - dodac do historii
+    history.push_back(HistoryEntry(data.first, data.second, OperationType::DEPOSIT));
 }
 
-void SavingAccount::deposit(double money) {
+void CheckingAccount::deposit(double money) {
     deposit({money, Currency::ENC});
 }
 
-void SavingAccount::withdraw(std::pair<double, Currency> data) {
+void CheckingAccount::withdraw(std::pair<double, Currency> data) {
     if (data.first > money || data.second != Currency::ENC)
         throw BusinessError();
 
     money -= data.first;
-    //to do - dodac do historii
+    history.push_back(HistoryEntry(data.first, data.second, OperationType::WITHDRAWAL));
 }
 
-void SavingAccount::withdraw(double money) {
+void CheckingAccount::withdraw(double money) {
     withdraw({money, Currency::ENC});
 }
 

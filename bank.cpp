@@ -8,7 +8,7 @@ void Bank::registerAccountID(std::shared_ptr<Account> account) {
 
 }
 CheckingAccount& Bank::openCheckingAccount(Citizen c) {
-    auto account = std::make_shared<CheckingAccount>(checkingAccountInfo, c, Currency::ENC);
+    auto account = std::make_shared<CheckingAccount>(checkingAccountInfo, c, Currency::ENC, *this);
     size_t id = nextAccountId++;
     account->id.first = this->id;
     account->id.second = id;
@@ -16,7 +16,7 @@ CheckingAccount& Bank::openCheckingAccount(Citizen c) {
     return *account;
 }
 SavingAccount& Bank::openSavingAccount(Citizen c) {
-    auto account = std::make_shared<SavingAccount>(checkingAccountInfo, c, Currency::ENC);
+    auto account = std::make_shared<SavingAccount>(checkingAccountInfo, c, Currency::ENC, *this);
     size_t id = nextAccountId++;
     account->id.first = this->id;
     account->id.second = id;
@@ -24,7 +24,7 @@ SavingAccount& Bank::openSavingAccount(Citizen c) {
     return *account;
 }
 CurrencyAccount& Bank::openCurrencyAccount(Citizen c, Currency cur) {
-    auto account = std::make_shared<CurrencyAccount>(checkingAccountInfo, c, cur);
+    auto account = std::make_shared<CurrencyAccount>(checkingAccountInfo, c, cur, *this);
     size_t id = nextAccountId++;
     account->id.first = this->id;
     account->id.second = id;

@@ -9,6 +9,8 @@
 #include "history_entry.h"
 #include "currency.h"
 
+class Bank;
+
 class Depositable {
     virtual void deposit(std::pair<double, Currency> data) = 0;
     virtual void deposit(double money) = 0;
@@ -28,26 +30,27 @@ class Account {
         BankAccountInfo &info;
         Citizen &owner;
         Currency currency;
+        Bank& bank;
         double money; //to do
         std::vector<HistoryEntry> history;
 
     public:
-    Account(BankAccountInfo& info, Citizen& owner, Currency& currency) :
-                                            info(info), owner(owner), currency(currency) {}
+    Account(BankAccountInfo& info, Citizen& owner, Currency& currency, Bank& bank) :
+                                            info(info), owner(owner), currency(currency), bank(bank) {}
     //pure virtual
     //virtual void transfer(const double money, const AccountID id, const std::string& title) = 0;
 };
 
-class CheckingAccount : public Account {
+class SavingAccount : public Account {
     public:
-        CheckingAccount(BankAccountInfo& info, Citizen& owner, Currency cur) : Account(info, owner, cur) {}
+        SavingAccount(BankAccountInfo& info, Citizen& owner, Currency cur, Bank& bank) : Account(info, owner, cur, bank) {}
         //virtual void transfer(const double money, const AccountID id, const std::string& title) override;
 };
 
 class CurrencyAccount : public Account, Withdrawable, Depositable {
     Currency currency;
     public:
-        CurrencyAccount(BankAccountInfo& info, Citizen& owner, Currency cur) : Account(info, owner, cur) {}
+        CurrencyAccount(BankAccountInfo& info, Citizen& owner, Currency cur, Bank& bank) : Account(info, owner, cur, bank) {}
 
         virtual void deposit(std::pair<double, Currency> data) override;
 
@@ -60,9 +63,9 @@ class CurrencyAccount : public Account, Withdrawable, Depositable {
         //virtual void transfer(const double money, const AccountID id, const std::string& title) override;
 };
 
-class SavingAccount : public Account, Withdrawable, Depositable {
+class CheckingAccount : public Account, Withdrawable, Depositable {
     public:
-        SavingAccount(BankAccountInfo& info, Citizen& owner, Currency cur) : Account(info, owner, cur) {}
+        CheckingAccount(BankAccountInfo& info, Citizen& owner, Currency cur, Bank& bank) : Account(info, owner, cur, bank) {}
 
         virtual void deposit(std::pair<double, Currency> data) override;
 
