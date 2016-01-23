@@ -83,7 +83,6 @@ class SavingAccount : public Account {
 
 // Konto walutowe.
 class CurrencyAccount : public Account, Withdrawable, Depositable {
-    Currency currency;
     public:
         CurrencyAccount(BankAccountInfo& info, Citizen& owner, Currency cur,
                         Bank& bank)
