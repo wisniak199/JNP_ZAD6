@@ -19,3 +19,8 @@ void BankSystem::makeTransfer(TransferInfo& info) {
     banks[info.getFrom().first]->transferFrom(info);
     banks[info.getTo().first]->transferTo(info);
 }
+
+void BankSystem::monthlyCharge() {
+    for (auto& bank : banks)
+        bank.monhtlyChargeOfAccounts();
+}

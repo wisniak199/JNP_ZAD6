@@ -11,6 +11,7 @@
 class Bank {
     public:
         using BankID = size_t;
+
     protected:
         friend class BankBuilder;
         friend class BankSystem;
@@ -23,6 +24,7 @@ class Bank {
         ExchangeTable exchangeTable;
         std::map<size_t, std::shared_ptr<Account>> accounts;
         void registerAccountID(Account& account);
+
     public:
         void setName(std::string n) {myName = n;}
         const ExchangeTable& getExchangeTable() { return exchangeTable; }

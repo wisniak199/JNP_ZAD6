@@ -7,6 +7,7 @@
 void Bank::registerAccountID(std::shared_ptr<Account> account) {
 
 }
+
 CheckingAccount& Bank::openCheckingAccount(Citizen c) {
     auto account = std::make_shared<CheckingAccount>(checkingAccountInfo, c, Currency::ENC, *this);
     size_t id = nextAccountId++;
