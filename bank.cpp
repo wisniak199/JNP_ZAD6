@@ -33,6 +33,10 @@ CurrencyAccount& Bank::openCurrencyAccount(Citizen c, Currency cur) {
     return *account;
 }
 
+bool Bank::accountExist(Account::AccountID id) {
+    return accounts.find(id.second) != accounts.end();
+}
+
 void Bank::transferTo(TransferInfo& info) {
     auto account = accounts[info.getTo().second];
     if (account->currency == info.getCurrency()) {

@@ -13,17 +13,22 @@ void Account::transfer(const double value, const AccountID to, std::string title
     bankSystem().makeTransfer(info);
 }
 
-std::string Account::balance() {
+std::string Account::balance() const {
     return std::to_string(money) + " " + currencyToString(currency);
 }
 
-std::string Account::history() {
+std::string Account::history() const {
     std::string result;
     for (auto entry : _history)
         result += entry.toString() + "\n";
     return result;
 }
 
+
+std::ostream& Account::write(std::ostream& os) const {
+    os << this->balance();
+    return os;
+}
 //CurrencyAccount
 
 void CurrencyAccount::deposit(std::pair<double, Currency> data) {

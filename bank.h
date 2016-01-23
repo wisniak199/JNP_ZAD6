@@ -35,6 +35,7 @@ class Bank {
         void transferTo(TransferInfo& info);
         void transferFrom(TransferInfo& info);
         void monhtlyChargeOfAccounts();
+        bool accountExist(Account::AccountID id);
         // @TODO
         // Account
 };
