@@ -29,5 +29,5 @@ void BankSystem::makeTransfer(TransferInfo& info) {
 
 void BankSystem::monthlyCharge() {
     for (auto& bank : banks)
-        bank.second->monhtlyChargeOfAccounts();
+        bank.second->monthlyChargeOfAccounts();
 }
