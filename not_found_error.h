@@ -3,4 +3,4 @@
 
 class NotFoundError : std::exception {};
 
-#endif /*__NOT_FOUND_ERROR_H__/
+#endif /*__NOT_FOUND_ERROR_H__*/
