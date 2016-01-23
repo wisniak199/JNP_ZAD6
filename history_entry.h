@@ -3,9 +3,6 @@
 
 #include "currency.h"
 #include "interstellarclock.h"
-/**
- * Reprezentowana w klasach kont, jako wektor.
- */
 
 using AccountID = std::pair<size_t, size_t>;
 std::string AccountIDToString(const AccountID& id);
@@ -27,7 +24,7 @@ class HistoryEntry {
 
     public:
         HistoryEntry(double money, Currency currency,
-                    OperationType operationType)
+                     OperationType operationType)
             : _day(interstellarClock().date())
             , _money(money)
             , _currency(currency)
@@ -56,7 +53,6 @@ class HistoryEntry {
             return ot;
         }
 
-
         std::string toString() {
             return std::to_string(_day) + " " + std::to_string(_money)
                     + currencyToString(_currency) + " "
@@ -64,6 +60,7 @@ class HistoryEntry {
         }
 };
 
+// Rozszerzona wersji HistoryEntry. Transfer zawiera wiecej informacji.
 class HistoryEntryTransfer : public HistoryEntry {
     protected:
         std::string _title;
