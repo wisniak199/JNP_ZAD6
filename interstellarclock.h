@@ -1,8 +1,6 @@
 #ifndef __gsb__interstellar_clock__
 #define __gsb__interstellar_clock__
 
-#include "bank_system.h"
-
 using Date = unsigned long long;
 using Time = unsigned short;
 
@@ -40,7 +38,6 @@ public:
     virtual InterstellarClock& nextMonth();
 
 private:
-    friend class BankSystem;
     // liczba godzin od początku założenia ZFP
     unsigned long long _hours;
 

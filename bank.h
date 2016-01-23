@@ -34,6 +34,7 @@ class Bank {
         void registerAccountID(std::shared_ptr<Account> account);
         void transferTo(TransferInfo& info);
         void transferFrom(TransferInfo& info);
+        void monhtlyChargeOfAccounts();
         // @TODO
         // Account
 };

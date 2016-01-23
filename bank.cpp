@@ -59,3 +59,5 @@ void Bank::transferFrom(TransferInfo& info) {
         account->_history.push_back(HistoryEntry(charge, Currency::ENC, OperationType::CHARGE));
     }
 }
+
+void Bank::monhtlyChargeOfAccounts(){}

@@ -1,6 +1,5 @@
 #include "interstellarclock.h"
 #include "bank_system.h"
-#include "bank.h"
 
 unsigned long long InterstellarClock::hours() const {
     return _hours;
@@ -40,6 +39,6 @@ InterstellarClock& interstellarClock() {
 void InterstellarClock::checkIfMonthPassed() {
     if (_hours - _last_charge_time >= HOURS_IN_MONTH) {
         _last_charge_time += HOURS_IN_MONTH;
-        bankSystem().monthlyCharging();
+        bankSystem().monthlyCharge();
     }
 }

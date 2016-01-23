@@ -1,8 +1,8 @@
 #ifndef __TRANSFER_INFO_H__
 #define __TRANSFER_INFO_H__
 
+#include <iostream>
 #include "account.h"
-#include "iostream"
 
 class TransferInfo {
     private:
