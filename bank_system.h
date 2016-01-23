@@ -7,6 +7,7 @@
 #include "transfer_info.h"
 #include "interstellarclock.h"
 
+// Zarządza przelewami i informuje banki o upływającym czasie.
 class BankSystem {
     protected:
         friend class InterstellarClock;
@@ -15,10 +16,12 @@ class BankSystem {
         Bank& addBank(Bank& bank);
         void monthlyCharge();
         void monthlyInterestGiveAway();
+
     public:
         void makeTransfer(TransferInfo& info);
 };
 
+// Statyczny system bankowy.
 BankSystem& bankSystem();
 
 #endif /*__BANK_SYSTEM_H__*/
