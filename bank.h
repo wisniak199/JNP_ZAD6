@@ -24,6 +24,7 @@ class Bank {
         ExchangeTable exchangeTable;
         std::map<size_t, std::shared_ptr<Account>> accounts;
         void registerAccountID(Account& account);
+        void monhtlyChargeOfAccounts();
 
     public:
         void setName(std::string n) {myName = n;}
