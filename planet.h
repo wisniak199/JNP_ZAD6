@@ -10,23 +10,18 @@ class Planet {
     protected:
         static CitizenID nextCitizenID;
         std::map<CitizenID, std::shared_ptr<Citizen>> idToName;
-        Planet() {} // protected, bo nie chcemy, aby uzytkownik stworzyl Planet
+
+        // Protected, bo nie chcemy, aby uzytkownik stworzyl Planet
+        Planet() {}
 
         CitizenID getNextID() { return nextCitizenID++; }
 
     public:
-        virtual ~Planet() {
-            idToName.clear();
-        }
-
+        virtual ~Planet() { idToName.clear(); }
         virtual Citizen& findCitizen(CitizenID id);
         Citizen& findCitizen(std::string id) { throw NotFoundError(); }
-        // pure virtual
         virtual Citizen& registerCitizen(const std::string& name) = 0;
 };
-
-// Out of line initialization.
-// CitizenID Planet::nextID = 0;
 
 class Earth : public Planet {
     public:
