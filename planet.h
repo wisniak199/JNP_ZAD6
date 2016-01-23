@@ -4,6 +4,8 @@
 #include <memory>
 #include <map>
 
+#include "not_found_error.h"
+
 class Planet {
     protected:
         static CitizenID nextCitizenID;
@@ -18,6 +20,7 @@ class Planet {
         }
 
         virtual Citizen& findCitizen(CitizenID id);
+        Citizen& findCitizen(std::string id) { throw NotFoundError(); }
         // pure virtual
         virtual Citizen& registerCitizen(const std::string& name) = 0;
 };

@@ -20,7 +20,7 @@ int main() {
     auto& found = earth().findCitizen(captain.id());
     assert(found.id() == captain.id());
     try {
-        auto& spock = earth().findCitizen(123456789);
+        auto& spock = earth().findCitizen("fdsfsd");
     } catch (...) {
         // ...jeśli nie istnieje, to zgłaszany jest wyjątek
         ::std::cout << "Spock not found" << ::std::endl;
@@ -81,7 +81,7 @@ int main() {
 
     // // próba przelewu na nieistniejące konto...
      try {
-         binariusCurrency.transfer(1, ::std::pair<size_t, size_t>(1,100));
+         binariusCurrency.transfer(1, "asdasd");
      } catch (...) {
         // // ...powinna zakończyć się wyjątkiem
          ::std::cout << "Account not found" << ::std::endl;

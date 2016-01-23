@@ -8,6 +8,7 @@
 #include "citizen.h"
 #include "history_entry.h"
 #include "currency.h"
+#include "not_found_error.h"
 
 class Bank;
 
@@ -41,6 +42,7 @@ class Account {
                                             info(info), owner(owner), currency(currency), bank(bank) {}
 
     void transfer(const double value, const AccountID to, std::string title = "");
+    void transfer(const double value, std::string to, std::string title = "") { throw NotFoundError(); }
     const AccountID& id() { return _id; }
     std::string balance() const;
     std::string history() const;
