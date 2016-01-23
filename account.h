@@ -34,14 +34,20 @@ class Account {
         double money; //to do
         std::vector<HistoryEntry> _history;
 
+        std::ostream& write(std::ostream& os) const;
+
     public:
     Account(BankAccountInfo& info, Citizen& owner, Currency& currency, Bank& bank) :
                                             info(info), owner(owner), currency(currency), bank(bank) {}
 
     void transfer(const double value, const AccountID to, std::string title = "");
     const AccountID& id() { return _id; }
-    std::string balance();
-    std::string history();
+    std::string balance() const;
+    std::string history() const;
+
+    friend std::ostream& operator<<(std::ostream& os, const Account& account) {
+        return account.write(os);
+    }
 };
 
 class SavingAccount : public Account {

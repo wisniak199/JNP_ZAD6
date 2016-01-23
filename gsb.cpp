@@ -74,17 +74,17 @@ int main() {
      ::std::cout << picardsChecking.history() << ::std::endl;
 
     // // stan konta oszczędnościowego Picarda
-    // ::std::cout << picardsSaving << ::std::endl;
+     ::std::cout << picardsSaving << ::std::endl;
 
     // // stan konta walutowego Binariusa
-    // ::std::cout << binariusCurrency << ::std::endl;
+     ::std::cout << binariusCurrency << ::std::endl;
 
     // // próba przelewu na nieistniejące konto...
-    // try {
-        // binariusCurrency.transfer(1, "Far Far In a Galaxy");
-    // } catch (...) {
+     try {
+         binariusCurrency.transfer(1, ::std::pair<size_t, size_t>(1,100));
+     } catch (...) {
         // // ...powinna zakończyć się wyjątkiem
-        // ::std::cout << "Account not found" << ::std::endl;
-    // }
+         ::std::cout << "Account not found" << ::std::endl;
+     }
     return 0;
 }
