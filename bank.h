@@ -33,7 +33,6 @@ class Bank {
         CheckingAccount& openCheckingAccount(Citizen c);
         SavingAccount& openSavingAccount(Citizen c);
         CurrencyAccount& openCurrencyAccount(Citizen c, Currency cur);
-        void registerAccountID(std::shared_ptr<Account> account);
         void transferTo(TransferInfo& info);
         void transferFrom(TransferInfo& info);
         bool accountExist(Account::AccountID id);

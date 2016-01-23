@@ -4,10 +4,6 @@
 #include "currency.h"
 #include "bank.h"
 
-// @FIXME
-void Bank::registerAccountID(std::shared_ptr<Account> account) {
-
-}
 
 /*******************************************************************************
  * Otwieranie kont
