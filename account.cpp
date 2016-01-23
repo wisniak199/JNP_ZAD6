@@ -8,7 +8,7 @@
 void Account::transfer(const double value, const AccountID to, std::string title) {
     if (money < value)
         throw BusinessError();
-    double valueENC = value * bank.getExchangeTable().getBuyRate(currency);
+    double valueENC = value * bank.exchangeTable().getBuyRate(currency);
     TransferInfo info(_id, to, currency, value, valueENC, title);
     bankSystem().makeTransfer(info);
 }
@@ -37,7 +37,7 @@ void CurrencyAccount::deposit(std::pair<double, Currency> data) {
 
     double toAdd;
     if (data.second == Currency::ENC)
-        toAdd = data.first / bank.getExchangeTable().getSellRate(currency);
+        toAdd = data.first / bank.exchangeTable().getSellRate(currency);
     else
         toAdd = data.first;
     money += toAdd;
@@ -54,7 +54,7 @@ void CurrencyAccount::withdraw(std::pair<double, Currency> data) {
 
     double toSubtract;
     if (data.second == Currency::ENC)
-        toSubtract = data.first / bank.getExchangeTable().getBuyRate(currency);
+        toSubtract = data.first / bank.exchangeTable().getBuyRate(currency);
     else
         toSubtract = data.first;
     if (toSubtract > money)

@@ -21,7 +21,7 @@ class Bank {
         BankAccountInfo checkingAccountInfo;
         BankAccountInfo savingAccountInfo;
         BankAccountInfo currencyAccountInfo;
-        ExchangeTable exchangeTable;
+        ExchangeTable _exchangeTable;
         std::map<size_t, std::shared_ptr<Account>> accounts;
         void registerAccountID(Account& account);
         void monthlyChargeOfAccounts();
@@ -29,7 +29,7 @@ class Bank {
 
     public:
         void setName(std::string n) {myName = n;}
-        const ExchangeTable& getExchangeTable() { return exchangeTable; }
+        ExchangeTable& exchangeTable() { return _exchangeTable; }
         CheckingAccount& openCheckingAccount(Citizen c);
         SavingAccount& openSavingAccount(Citizen c);
         CurrencyAccount& openCurrencyAccount(Citizen c, Currency cur);

@@ -9,8 +9,10 @@ class ExchangeTable {
     private:
         std::map<Currency, double> buyRates;
         std::map<Currency, double> sellRates;
+        Currency _settingCurrency;
     public:
         ExchangeTable() {
+            _settingCurrency = Currency::ENC;
             buyRates[Currency::ENC] = 1;
             buyRates[Currency::BIC] = 1;
             buyRates[Currency::DIL] = 1;
@@ -27,6 +29,12 @@ class ExchangeTable {
 
         void setBuyRate(Currency c, double newRate) { buyRates[c] = newRate; }
         void setSellRate(Currency c, double newRate) { sellRates[c] = newRate; }
+
+        ExchangeTable& exchangeRate(Currency cur) { _settingCurrency = cur; return *this; }
+        ExchangeTable& buyingRate(double rate) { buyRates[_settingCurrency] = rate; return *this; }
+        ExchangeTable& sellingRate(double rate) { sellRates[_settingCurrency] = rate; return *this; }
+
+
 };
 
 #endif /*__EXCHANGE_TABLE_H__*/

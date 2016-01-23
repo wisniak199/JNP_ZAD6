@@ -64,10 +64,10 @@ int main() {
     binariusCurrency.withdraw({1, Currency::ENC});
 
     // // zmiana kursu waluty i wypłata
-    /*raisaBank.exchangeTable()
-             .exchangeRate(Currency::DIL).buyingRate(2.0).sellingRate(3.0);*/
-    //binariusCurrency.withdraw({1, Currency::ENC});
-    //binariusCurrency.withdraw({1.0, Currency::DIL});
+    raisaBank.exchangeTable()
+             .exchangeRate(Currency::DIL).buyingRate(2.0).sellingRate(3.0);
+    binariusCurrency.withdraw({1, Currency::ENC});
+    binariusCurrency.withdraw({1.0, Currency::DIL});
 
     // // stan konta rozliczeniowego Picarda
      ::std::cout << picardsChecking.balance() << ::std::endl;
