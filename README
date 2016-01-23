@@ -1,0 +1,6 @@
+Opis rozwiazania:
+Bankami zarzadza centralny system BankSystem - trzyma on liste bankow i odpowiada za przeprowadzanie
+zlecenia wykonania "podczynnosci" przelewow. Banki maja liste kont, ktore zostaly tam otwarte.
+Kazde konto mareferencje na swojego wlasciciela. Konta same zarzadzaja wyplacaniem i wplacaniem 
+pieniedzy. Gdy nadejdzie odpowiedni moment Zegar wywoluje funkcje bankSystem aby ten zlecil
+wszystkim bankom, aby te pobraly oplaty za konta.
