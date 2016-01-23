@@ -108,6 +108,7 @@ class CheckingAccount : public Account, Withdrawable, Depositable {
         virtual void withdraw(double money) override;
 };
 
+// Konwersja id do napisu.
 std::string AccountIDToString(const AccountID& id);
 
 #endif /*__ACCOUNT_H__*/
