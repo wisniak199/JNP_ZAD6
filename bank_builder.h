@@ -4,11 +4,19 @@
 #include "bank.h"
 #include "bank_system.h"
 
+// Budowanie banku.
 class BankBuilder {
     private:
+        // Kolejne wolne ID do przypisania nowemu bankowi.
         Bank::BankID nextID;
+
+        // Szablon dla banku, który modyfikujemy podczas tworzenia nowej
+        //  instancji banku.
         Bank bankTemplate;
+
+        // Parametry nowego banku.
         BankAccountInfo *settingAccount;
+
     public:
         BankBuilder() { settingAccount = &bankTemplate.checkingAccountInfo; }
 
