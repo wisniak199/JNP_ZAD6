@@ -36,12 +36,12 @@ void Bank::transferTo(TransferInfo& info) {
     auto account = accounts[info.getTo().second];
     if (account->currency == info.getCurrency()) {
         account->money += info.getMoney();
-        account->history.push_back(HistoryEntryTransfer(info.getMoney(), info.getCurrency(),
+        account->_history.push_back(HistoryEntryTransfer(info.getMoney(), info.getCurrency(),
                                 OperationType::TRANSFER, info.getTitle(), info.getFrom(), info.getTo()));
     } else {
         double toAdd = info.getMoneyENC() / exchangeTable.getBuyRate(account->currency);
         account->money += toAdd;
-        account->history.push_back(HistoryEntryTransfer(toAdd, Currency::ENC, OperationType::TRANSFER,
+        account->_history.push_back(HistoryEntryTransfer(toAdd, Currency::ENC, OperationType::TRANSFER,
                                     info.getTitle(), info.getFrom(), info.getTo()));
 
     }
@@ -50,11 +50,11 @@ void Bank::transferTo(TransferInfo& info) {
 void Bank::transferFrom(TransferInfo& info) {
     auto account = accounts[info.getFrom().second];
     account->money -= info.getMoney();
-    account->history.push_back(HistoryEntryTransfer(info.getMoney(), info.getCurrency(),
+    account->_history.push_back(HistoryEntryTransfer(info.getMoney(), info.getCurrency(),
                                 OperationType::TRANSFER, info.getTitle(), info.getFrom(), info.getTo()));
     double charge = account->info.getTransferCharge();
     if (charge != 0) {
         account->money -= charge / exchangeTable.getBuyRate(account->currency);
-        account->history.push_back(HistoryEntry(charge, Currency::ENC, OperationType::CHARGE));
+        account->_history.push_back(HistoryEntry(charge, Currency::ENC, OperationType::CHARGE));
     }
 }

@@ -70,8 +70,8 @@ int main() {
     //binariusCurrency.withdraw({1.0, Currency::DIL});
 
     // // stan konta rozliczeniowego Picarda
-    // ::std::cout << picardsChecking.balance() << ::std::endl;
-    // ::std::cout << picardsChecking.history() << ::std::endl;
+     ::std::cout << picardsChecking.balance() << ::std::endl;
+     ::std::cout << picardsChecking.history() << ::std::endl;
 
     // // stan konta oszczędnościowego Picarda
     // ::std::cout << picardsSaving << ::std::endl;

@@ -32,7 +32,7 @@ class Account {
         Currency currency;
         Bank& bank;
         double money; //to do
-        std::vector<HistoryEntry> history;
+        std::vector<HistoryEntry> _history;
 
     public:
     Account(BankAccountInfo& info, Citizen& owner, Currency& currency, Bank& bank) :
@@ -40,6 +40,8 @@ class Account {
 
     void transfer(const double value, const AccountID to, std::string title = "");
     const AccountID& id() { return _id; }
+    std::string balance();
+    std::string history();
 };
 
 class SavingAccount : public Account {

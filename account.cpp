@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "account.h"
 #include "business_error.h"
 #include "bank.h"
@@ -9,6 +11,17 @@ void Account::transfer(const double value, const AccountID to, std::string title
     double valueENC = value * bank.getExchangeTable().getBuyRate(currency);
     TransferInfo info(_id, to, currency, value, valueENC, title);
     bankSystem().makeTransfer(info);
+}
+
+std::string Account::balance() {
+    return std::to_string(money) + " " + currencyToString(currency);
+}
+
+std::string Account::history() {
+    std::string result;
+    for (auto entry : _history)
+        result += entry.toString() + "\n";
+    return result;
 }
 
 //CurrencyAccount
@@ -23,7 +36,7 @@ void CurrencyAccount::deposit(std::pair<double, Currency> data) {
     else
         toAdd = data.first;
     money += toAdd;
-    history.push_back(HistoryEntry(toAdd, data.second, OperationType::DEPOSIT));
+    _history.push_back(HistoryEntry(toAdd, data.second, OperationType::DEPOSIT));
 }
 
 void CurrencyAccount::deposit(double money) {
@@ -42,7 +55,7 @@ void CurrencyAccount::withdraw(std::pair<double, Currency> data) {
     if (toSubtract > money)
         throw BusinessError();
     money -= toSubtract;
-    history.push_back(HistoryEntry(toSubtract, data.second, OperationType::WITHDRAWAL));
+    _history.push_back(HistoryEntry(toSubtract, data.second, OperationType::WITHDRAWAL));
 }
 
 void CurrencyAccount::withdraw(double money) {
@@ -57,7 +70,7 @@ void CheckingAccount::deposit(std::pair<double, Currency> data) {
         throw BusinessError();
 
     money += data.first;
-    history.push_back(HistoryEntry(data.first, data.second, OperationType::DEPOSIT));
+    _history.push_back(HistoryEntry(data.first, data.second, OperationType::DEPOSIT));
 }
 
 void CheckingAccount::deposit(double money) {
@@ -69,7 +82,7 @@ void CheckingAccount::withdraw(std::pair<double, Currency> data) {
         throw BusinessError();
 
     money -= data.first;
-    history.push_back(HistoryEntry(data.first, data.second, OperationType::WITHDRAWAL));
+    _history.push_back(HistoryEntry(data.first, data.second, OperationType::WITHDRAWAL));
 }
 
 void CheckingAccount::withdraw(double money) {
