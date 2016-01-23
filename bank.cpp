@@ -44,7 +44,7 @@ void Bank::transferTo(TransferInfo& info) {
         account->_history.push_back(HistoryEntryTransfer(info.getMoney(), info.getCurrency(),
                                 OperationType::TRANSFER, info.getTitle(), info.getFrom(), info.getTo()));
     } else {
-        double toAdd = info.getMoneyENC() / exchangeTable().getBuyRate(account->currency);
+        double toAdd = info.getMoneyENC() / exchangeTable().getSellRate(account->currency);
         account->money += toAdd;
         account->_history.push_back(HistoryEntryTransfer(toAdd, Currency::ENC, OperationType::TRANSFER,
                                     info.getTitle(), info.getFrom(), info.getTo()));
