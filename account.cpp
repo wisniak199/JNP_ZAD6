@@ -97,4 +97,3 @@ void CheckingAccount::withdraw(double money) {
 std::string AccountIDToString(const AccountID& id) {
     return std::to_string(id.first) + "-" + std::to_string(id.second);
 }
-
