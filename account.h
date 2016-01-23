@@ -26,7 +26,7 @@ class Account {
         using AccountID = std::pair<size_t, size_t>;
     protected:
         friend class Bank;
-        AccountID id;
+        AccountID _id;
         BankAccountInfo &info;
         Citizen &owner;
         Currency currency;
@@ -37,14 +37,14 @@ class Account {
     public:
     Account(BankAccountInfo& info, Citizen& owner, Currency& currency, Bank& bank) :
                                             info(info), owner(owner), currency(currency), bank(bank) {}
-    //pure virtual
-    //virtual void transfer(const double money, const AccountID id, const std::string& title) = 0;
+
+    void transfer(const double value, const AccountID to, std::string title = "");
+    const AccountID& id() { return _id; }
 };
 
 class SavingAccount : public Account {
     public:
         SavingAccount(BankAccountInfo& info, Citizen& owner, Currency cur, Bank& bank) : Account(info, owner, cur, bank) {}
-        //virtual void transfer(const double money, const AccountID id, const std::string& title) override;
 };
 
 class CurrencyAccount : public Account, Withdrawable, Depositable {
@@ -59,8 +59,6 @@ class CurrencyAccount : public Account, Withdrawable, Depositable {
         virtual void withdraw(std::pair<double, Currency> data) override;
 
         virtual void withdraw(double money) override;
-
-        //virtual void transfer(const double money, const AccountID id, const std::string& title) override;
 };
 
 class CheckingAccount : public Account, Withdrawable, Depositable {
@@ -73,8 +71,8 @@ class CheckingAccount : public Account, Withdrawable, Depositable {
 
         virtual void withdraw(std::pair<double, Currency> data) override;
         virtual void withdraw(double money) override;
-
-        //virtual void transfer(const double money, const AccountID id, const std::string& title) override;
 };
+
+std::string AccountIDToString(const AccountID& id);
 
 #endif /*__ACCOUNT_H__*/

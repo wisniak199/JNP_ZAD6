@@ -1,12 +1,12 @@
 CC = clang++
 CFLAGS = -Wall -std=c++11 -c
 LDFLAGS = -Wall -std=c++11
-ALL = account bank_system gsb planet bank_builder gkb bank interstellarclock
+ALL = account bank_system gsb planet bank_builder gkb bank interstellarclock currency
 
 all: gsb
 
-gsb: gsb.o planet.o bank_system.o account.o bank_builder.o gkb.o bank.o interstellarclock.o
-	$(CC) $(LDFLAGS) -o gsb gsb.o planet.o bank_system.o bank.o account.o bank_builder.o gkb.o interstellarclock.o
+gsb: gsb.o planet.o bank_system.o account.o bank_builder.o gkb.o bank.o interstellarclock.o currency.o
+	$(CC) $(LDFLAGS) -o gsb gsb.o planet.o bank_system.o bank.o account.o bank_builder.o gkb.o interstellarclock.o currency.o
 
 planet.o: planet.cpp
 	$(CC) $(CFLAGS) -o planet.o planet.cpp
@@ -31,6 +31,9 @@ gkb.o: gkb.cpp
 
 interstellarclock.o: interstellarclock.cpp
 	$(CC) $(CFLAGS) -o interstellarclock.o interstellarclock.cpp
+
+currency.o: currency.cpp
+	$(CC) $(CFLAGS) -o currency.o currency.cpp
 
 clean:
 	rm -f *.o $(ALL) *~

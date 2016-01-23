@@ -8,6 +8,8 @@
  */
 
 using AccountID = std::pair<size_t, size_t>;
+std::string AccountIDToString(const AccountID& id);
+
 enum class OperationType {
     TRANSFER = 1,
     CHARGE,
@@ -81,8 +83,8 @@ class HistoryEntryTransfer : public HistoryEntry {
 
         virtual std::string toString() {
             return HistoryEntry::toString() + " (" + _title + ")"
-                    + " FROM: "// + std::to_string(_sender)
-                    + " TO: ";// + std::to_string(_receiver);
+                    + " FROM: " + AccountIDToString(_sender)
+                    + " TO: " + AccountIDToString(_receiver);
         }
 };
 

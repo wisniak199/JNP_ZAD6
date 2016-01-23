@@ -6,6 +6,7 @@
 #include "bank_account_info.h"
 #include "exchange_table.h"
 #include "account.h"
+#include "transfer_info.h"
 
 class Bank {
     public:
@@ -29,6 +30,8 @@ class Bank {
         SavingAccount& openSavingAccount(Citizen c);
         CurrencyAccount& openCurrencyAccount(Citizen c, Currency cur);
         void registerAccountID(std::shared_ptr<Account> account);
+        void transferTo(TransferInfo& info);
+        void transferFrom(TransferInfo& info);
         // @TODO
         // Account
 };

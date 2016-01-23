@@ -1,6 +1,15 @@
 #include "account.h"
 #include "business_error.h"
 #include "bank.h"
+#include "bank_system.h"
+
+void Account::transfer(const double value, const AccountID to, std::string title) {
+    if (money < value)
+        throw BusinessError();
+    double valueENC = value * bank.getExchangeTable().getBuyRate(currency);
+    TransferInfo info(_id, to, currency, value, valueENC, title);
+    bankSystem().makeTransfer(info);
+}
 
 //CurrencyAccount
 
@@ -67,4 +76,7 @@ void CheckingAccount::withdraw(double money) {
     withdraw({money, Currency::ENC});
 }
 
-//virtual void transfer(const double money, const AccountID id, const std::string& title) override;
+std::string AccountIDToString(const AccountID& id) {
+    return std::to_string(id.first) + "-" + std::to_string(id.second);
+}
+

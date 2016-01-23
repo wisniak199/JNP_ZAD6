@@ -42,32 +42,32 @@ int main() {
 
     // // możemy otwierać różne rodzaje kont dla obywateli Zjednoczonej Federacji Planet
     auto& picardsChecking = enterpriseBank.openCheckingAccount(captain);
-    // auto& picardsSaving = enterpriseBank.openSavingAccount(captain);
-    // auto& binariusCurrency = raisaBank.openCurrencyAccount(binarius, Currency::DIL);
+    auto& picardsSaving = enterpriseBank.openSavingAccount(captain);
+    auto& binariusCurrency = raisaBank.openCurrencyAccount(binarius, Currency::DIL);
 
     // // operacje na koncie rozliczeniowym
-    // picardsChecking.deposit(101.5);
-    // picardsChecking.withdraw({1.5, Currency::ENC});
-    // picardsChecking.transfer(100, picardsSaving.id());
+    picardsChecking.deposit(101.5);
+    picardsChecking.withdraw({1.5, Currency::ENC});
+    picardsChecking.transfer(100, picardsSaving.id());
 
     // // operacje na koncie oszczędnościowym
-    // picardsSaving.transfer(49.99, binariusCurrency.id(), "for binarius");
+    picardsSaving.transfer(49.99, binariusCurrency.id(), "for binarius");
 
     // // przesuwamy kalendarz
     // // odsetki są kapitalizowane miesięcznie pierwszego dnia miesiąca o g. 0
     // // opłaty miesięczne za prowadzenie konta są pobierane pierwszego dnia miesiąca o g. 0
-    // interstellarClock().nextMonth().nextDay();
+    interstellarClock().nextMonth().nextDay();
 
     // // operacje na koncie walutowym
     // // domyślnie kurs jest 1 do 1
-    // binariusCurrency.withdraw(1);
-    // binariusCurrency.withdraw({1, Currency::ENC});
+    binariusCurrency.withdraw(1);
+    binariusCurrency.withdraw({1, Currency::ENC});
 
     // // zmiana kursu waluty i wypłata
-    // raisaBank.exchangeTable()
-        // .exchangeRate(Currency::DIL).buyingRate(2.0).sellingRate(3.0);
-    // binariusCurrency.withdraw({1, Currency::ENC});
-    // binariusCurrency.withdraw({1.0, Currency::DIL});
+    /*raisaBank.exchangeTable()
+             .exchangeRate(Currency::DIL).buyingRate(2.0).sellingRate(3.0);*/
+    //binariusCurrency.withdraw({1, Currency::ENC});
+    //binariusCurrency.withdraw({1.0, Currency::DIL});
 
     // // stan konta rozliczeniowego Picarda
     // ::std::cout << picardsChecking.balance() << ::std::endl;

@@ -1,6 +1,8 @@
 #ifndef __CURRENCY_H__
 #define __CURRENCY_H__
 
+#include <iostream>
+
 enum class Currency {
     ENC,
     BIC,
