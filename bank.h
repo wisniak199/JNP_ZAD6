@@ -25,6 +25,7 @@ class Bank {
         std::map<size_t, std::shared_ptr<Account>> accounts;
         void registerAccountID(Account& account);
         void monthlyChargeOfAccounts();
+        void monthlyInterestGiveAway();
 
     public:
         void setName(std::string n) {myName = n;}

@@ -31,3 +31,8 @@ void BankSystem::monthlyCharge() {
     for (auto& bank : banks)
         bank.second->monthlyChargeOfAccounts();
 }
+
+void BankSystem::monthlyInterestGiveAway() {
+    for (auto& bank : banks)
+        bank.second->monthlyInterestGiveAway();
+}

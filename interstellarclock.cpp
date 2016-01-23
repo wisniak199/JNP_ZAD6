@@ -39,6 +39,7 @@ InterstellarClock& interstellarClock() {
 void InterstellarClock::checkIfMonthPassed() {
     if (_hours - _last_charge_time >= HOURS_IN_MONTH) {
         _last_charge_time += HOURS_IN_MONTH;
+        bankSystem().monthlyInterestGiveAway();
         bankSystem().monthlyCharge();
     }
 }

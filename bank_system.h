@@ -14,6 +14,7 @@ class BankSystem {
         std::map<Bank::BankID, std::shared_ptr<Bank>> banks;
         Bank& addBank(Bank& bank);
         void monthlyCharge();
+        void monthlyInterestGiveAway();
     public:
         void makeTransfer(TransferInfo& info);
 };

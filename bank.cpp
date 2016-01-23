@@ -64,9 +64,17 @@ void Bank::transferFrom(TransferInfo& info) {
     }
 }
 
-void Bank::monthlyChargeOfAccounts(){
+void Bank::monthlyChargeOfAccounts() {
    for (auto account_pair : accounts) {
        auto account = account_pair.second;
        account->money -= account->info.getMonthlyCharge();
    }
+}
+
+void Bank::monthlyInterestGiveAway() {
+    for (auto account_pair : accounts) {
+        auto account = account_pair.second;
+        if (account->money > 0)
+            account->money += account->money * account->info.getInterestRate();
+    }
 }
