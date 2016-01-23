@@ -36,8 +36,6 @@ class Bank {
         void transferTo(TransferInfo& info);
         void transferFrom(TransferInfo& info);
         bool accountExist(Account::AccountID id);
-        // @TODO
-        // Account
 };
 
 #endif /*__BANK_H__*/
